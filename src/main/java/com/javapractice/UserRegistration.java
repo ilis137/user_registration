@@ -11,17 +11,17 @@ public class UserRegistration
     private static final Logger log = LogManager.getLogger(UserRegistration.class);
     static Scanner sc = new Scanner(System.in);
     public void fillForm(){
-        System.out.println("Enter a valid first name");
+        log.info("Enter a valid first name");
 		String firstName = sc.nextLine();
-        System.out.println("Enter a valid first name");
+        log.info("Enter a valid first name");
 		String lastName = sc.nextLine();
 		validation(firstName,lastName);
         sc.close();
     }
  
     public void validation(String firstName,String lastName){
-        System.out.println("First Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName));
-        System.out.println("Last Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName));
+        log.info("First Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName));
+        log.info("Last Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName));
     }
     public static void main( String[] args )
     {
