@@ -13,11 +13,16 @@ public class UserRegistration
 
     //asks users for the details to validate
     public void fillForm(){
-        String firstName = "Amit";
-        String lastName = "Maharana";
-        String email = "abc.xyz@gmail.com";
-        String mobile = "91 8210029078";
-        String password = "Ahjgsd45@fj";
+        log.info("Enter a valid first name");
+		String firstName = sc.nextLine();
+        log.info("Enter a valid last name");
+		String lastName = sc.nextLine();
+        log.info("Enter a valid email");
+		String email = sc.nextLine();
+        log.info("Enter a valid mobile number starting with country code followed by a space and 10 digit number");
+		String mobile = sc.nextLine();
+        log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter,one digit and exactly one special character)");
+		String password = sc.nextLine();
         this.isFirstNamevalid(firstName);
         this.isLastNameValid(lastName);
         this.isEmailValid(email);
