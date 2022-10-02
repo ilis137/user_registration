@@ -32,11 +32,11 @@ public class UserRegistration
         log.info("First Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName));
         log.info("Last Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName));
         //  abc.xyz@bl.co.in is valid with abc bl and co are mandatory 2 optional(xyz,in) with precise @ and . positions 
-        log.info("E-Mail valid: " + Pattern.matches("^[a-zA-Z0-9]{3,}([.]{1}+[a-zA-Z0-9]{3,})*[@]{1}[a-zA-Z0-9]{2,}[.]{1}[a-zA-Z0-9]{2,}([.]{1}[a-zA-Z0-9]{2,})*$", email));
+        log.info("E-Mail valid: " + Pattern.matches("^[a-z]{3,}([\\.\\+\\-]?[0-9]{3,})?[@][a-z0-9]{1,}[.][a-z]{2,4}[,]?([.][a-z]{2,4}[.]?)?$", email));
         // country code followed by space followed by 10 digit number
         log.info("Mobile Number: " + Pattern.matches("^[1-9][0-9]*[\\s][6-9][0-9]{9}$", mobile));
         // minimum 8 characters required
-		log.info("Password: " + Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.\\!])(?=.*[A-Z])(?=.*[0-9]).{8,}$", password));
+		log.info("Password: " + Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.])(?=.*[A-Z])(?=.*[0-9]).{8,}$", password));
     }
     public static void main( String[] args )
     {
