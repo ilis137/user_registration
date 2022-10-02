@@ -15,13 +15,13 @@ public class UserRegistration
     public void fillForm(){
         log.info("Enter a valid first name");
 		String firstName = sc.nextLine();
-        log.info("Enter a valid first name");
+        log.info("Enter a valid last name");
 		String lastName = sc.nextLine();
         log.info("Enter a valid email");
 		String email = sc.nextLine();
         log.info("Enter a valid mobile number starting with country code followed by a space and 10 digit number");
 		String mobile = sc.nextLine();
-        log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter and one digit)");
+        log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter,one digit and exactly one special character)");
 		String password = sc.nextLine();
 		validation(firstName,lastName,email,mobile,password);
         sc.close();
@@ -36,7 +36,7 @@ public class UserRegistration
         // country code followed by space followed by 10 digit number
         log.info("Mobile Number: " + Pattern.matches("^[1-9][0-9]*[\\s][6-9][0-9]{9}$", mobile));
         // minimum 8 characters required
-		log.info("Password: " + Pattern.matches("^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$", password));
+		log.info("Password: " + Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.\\!])(?=.*[A-Z])(?=.*[0-9]).{8,}$", password));
     }
     public static void main( String[] args )
     {
