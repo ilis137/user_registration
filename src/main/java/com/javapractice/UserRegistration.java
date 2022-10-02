@@ -13,11 +13,15 @@ public class UserRegistration
     public void fillForm(){
         System.out.println("Enter a valid first name");
 		String firstName = sc.nextLine();
-		validation(firstName);
+        System.out.println("Enter a valid first name");
+		String lastName = sc.nextLine();
+		validation(firstName,lastName);
+        sc.close();
     }
  
-    public void validation(String firstName){
+    public void validation(String firstName,String lastName){
         System.out.println("First Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName));
+        System.out.println("Last Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName));
     }
     public static void main( String[] args )
     {
