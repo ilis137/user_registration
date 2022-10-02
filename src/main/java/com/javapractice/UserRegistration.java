@@ -13,30 +13,33 @@ public class UserRegistration
 
     //asks users for the details to validate
     public void fillForm(){
-        log.info("Enter a valid first name");
-		String firstName = sc.nextLine();
-        log.info("Enter a valid last name");
-		String lastName = sc.nextLine();
-        log.info("Enter a valid email");
-		String email = sc.nextLine();
-        log.info("Enter a valid mobile number starting with country code followed by a space and 10 digit number");
-		String mobile = sc.nextLine();
-        log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter,one digit and exactly one special character)");
-		String password = sc.nextLine();
-		validation(firstName,lastName,email,mobile,password);
-        sc.close();
+        String firstName = "Amit";
+        String lastName = "Maharana";
+        String email = "abc.xyz@gmail.com";
+        String mobile = "91 8210029078";
+        String password = "Ahjgsd45@fj";
+        this.isFirstNamevalid(firstName);
+        this.isLastNameValid(lastName);
+        this.isEmailValid(email);
+        this.isMobileNumberValid(mobile);
+        this.isPasswordValid(password);
+      
     }
     //method to validate form data
-    public void validation(String firstName,String lastName,String email,String mobile,String password){
-        // First Name and Last Name comes with restriction such as first letter should be upper case and with minimum 3 characters
-        log.info("First Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName));
-        log.info("Last Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName));
-        //  abc.xyz@bl.co.in is valid with abc bl and co are mandatory 2 optional(xyz,in) with precise @ and . positions 
-        log.info("E-Mail valid: " + Pattern.matches("^[a-z]{3,}([\\.\\+\\-]?[0-9]{3,})?[@][a-z0-9]{1,}[.][a-z]{2,4}[,]?([.][a-z]{2,4}[.]?)?$", email));
-        // country code followed by space followed by 10 digit number
-        log.info("Mobile Number: " + Pattern.matches("^[1-9][0-9]*[\\s][6-9][0-9]{9}$", mobile));
-        // minimum 8 characters required
-		log.info("Password: " + Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.])(?=.*[A-Z])(?=.*[0-9]).{8,}$", password));
+    public boolean isFirstNamevalid(String firstName) {
+        return Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName);
+    }
+    public boolean isLastNameValid(String lastName) {
+        return Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName);
+    }
+    public boolean isEmailValid(String email) {
+        return Pattern.matches("^[a-zA-Z0-9]{3,}([\\.\\+\\-]?[a-zA-Z0-9]{3,})?[@][A-Za-z0-9]{1,}[.][A-Za-z]{2,4}[,]?([.][A-Za-z]{2,4}[.]?)?$", email);
+    }
+    public boolean isMobileNumberValid(String mobile) {
+        return Pattern.matches("^[9][1][\\s][6-9][0-9]{9}$", mobile);
+    }
+    public boolean isPasswordValid(String password) {
+        return Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$", password);
     }
     public static void main( String[] args )
     {
