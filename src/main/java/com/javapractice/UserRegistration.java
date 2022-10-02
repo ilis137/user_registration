@@ -21,7 +21,7 @@ public class UserRegistration
 		String email = sc.nextLine();
         log.info("Enter a valid mobile number starting with country code followed by a space and 10 digit number");
 		String mobile = sc.nextLine();
-        log.info("Enter a valid password with minimum 8 charcters");
+        log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter)");
 		String password = sc.nextLine();
 		validation(firstName,lastName,email,mobile,password);
         sc.close();
@@ -36,7 +36,7 @@ public class UserRegistration
         // country code followed by space followed by 10 digit number
         log.info("Mobile Number: " + Pattern.matches("^[1-9][0-9]*[\\s][6-9][0-9]{9}$", mobile));
         // minimum 8 characters required
-		log.info("Password: " + Pattern.matches("^[a-zA-Z0-9]{8,}$", password));
+		log.info("Password: " + Pattern.matches("^(?=.*[A-Z])[a-zA-Z0-9]{8,}$", password));
     }
     public static void main( String[] args )
     {
