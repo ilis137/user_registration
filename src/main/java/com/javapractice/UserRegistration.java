@@ -15,13 +15,16 @@ public class UserRegistration
 		String firstName = sc.nextLine();
         log.info("Enter a valid first name");
 		String lastName = sc.nextLine();
-		validation(firstName,lastName);
+        System.out.println("Enter a valid email");
+		String email = sc.nextLine();
+		validation(firstName,lastName,email);
         sc.close();
     }
  
-    public void validation(String firstName,String lastName){
+    public void validation(String firstName,String lastName,String email){
         log.info("First Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName));
         log.info("Last Name Valid: " + Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName));
+        log.info("E-Mail valid: " + Pattern.matches("^[a-zA-Z0-9]{3,}([.]{1}+[a-zA-Z0-9]{3,})*[@]{1}[a-zA-Z0-9]{2,}[.]{1}[a-zA-Z0-9]{2,}([.]{1}[a-zA-Z0-9]{2,})*$", email));
     }
     public static void main( String[] args )
     {
