@@ -23,29 +23,65 @@ public class UserRegistration
 		String mobile = sc.nextLine();
         log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter,one digit and exactly one special character)");
 		String password = sc.nextLine();
-        this.isFirstNamevalid(firstName);
-        this.isLastNameValid(lastName);
-        this.isEmailValid(email);
-        this.isMobileNumberValid(mobile);
-        this.isPasswordValid(password);
+        try {
+            isFirstNamevalid(firstName);
+        }catch(Exception e) {log.info("Exception occured is " + e);}
+        try {
+            isLastNameValid(lastName);
+        }catch(Exception e) {
+            log.info("Exception occured is " + e);
+        }
+        try {
+            isEmailValid(email);
+        }catch(Exception e) {
+            log.info("Exception occured is " + e);
+        }
+        try {
+            isMobileNumberValid(mobile);
+        }catch(Exception e) {
+            log.info("Exception occured is " + e);
+        }
+        try {
+            isPasswordValid(password);
+        }catch(Exception e) {
+            log.info("Exception occured is " + e);
+        }
       
     }
     //method to validate form data
-    public boolean isFirstNamevalid(String firstName) {
-        return Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName);
-    }
-    public boolean isLastNameValid(String lastName) {
-        return Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName);
-    }
-    public boolean isEmailValid(String email) {
-        return Pattern.matches("^[a-zA-Z0-9]{3,}([\\.\\+\\-]?[a-zA-Z0-9]{3,})?[@][A-Za-z0-9]{1,}[.][A-Za-z]{2,4}[,]?([.][A-Za-z]{2,4}[.]?)?$", email);
-    }
-    public boolean isMobileNumberValid(String mobile) {
-        return Pattern.matches("^[9][1][\\s][6-9][0-9]{9}$", mobile);
-    }
-    public boolean isPasswordValid(String password) {
-        return Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$", password);
-    }
+    public  boolean isFirstNamevalid(String firstName) throws UserRegistrationException {
+
+        if(Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName))
+            return true;
+        else
+            throw new UserRegistrationException("Invalid First Name");
+   }
+   public  boolean isLastNameValid(String lastName) throws UserRegistrationException {
+       if(Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName))
+           return true;
+       else
+           throw new UserRegistrationException("Invalid Last Name");
+   }
+   public  boolean isEmailValid(String email) throws UserRegistrationException {
+       if(Pattern.matches("^[a-zA-Z0-9]{3,}([\\.\\+\\-]?[a-zA-Z0-9]{3,})?[@][A-Za-z0-9]{1,}[.][A-Za-z]{2,4}[,]?([.][A-Za-z]{2,4}[.]?)?$", email))
+           return true;
+       else
+           throw new UserRegistrationException("Invalid Email");
+
+   }
+   public  boolean isMobileNumberValid(String mobile) throws UserRegistrationException {
+       if(Pattern.matches("^[9][1][\\s][6-9][0-9]{9}$", mobile))
+           return true;
+       else
+           throw new UserRegistrationException("Invalid Mobile Number");
+   }
+   public  boolean isPasswordValid(String password) throws UserRegistrationException {
+       if(Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$", password))
+           return true;
+       else
+           throw new UserRegistrationException("Invalid Password");
+   }
+
     public static void main( String[] args )
     {
         UserRegistration form=new UserRegistration();

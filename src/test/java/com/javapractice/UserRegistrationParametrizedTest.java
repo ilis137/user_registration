@@ -58,7 +58,12 @@ public class UserRegistrationParametrizedTest {
   }
   @Test
   public void checkEmailIsvalidOrNot() {
-      log.info("Email:" + this.expectedResult);
+    try {
+        log.info("Email:" + this.expectedResult);
       Assert.assertEquals(this.expectedResult, form.isEmailValid(this.email));
+    } catch (Exception e) {
+        log.info("Exception occured is " + e);
+    }
+      
   }
 }
