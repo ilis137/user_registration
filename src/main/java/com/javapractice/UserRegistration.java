@@ -6,11 +6,20 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@FunctionalInterface
+interface UserEntryValidator {
+    boolean validityCheck(String pattern, String name);
+}
 public class UserRegistration 
 {
     private static final Logger log = LogManager.getLogger(UserRegistration.class);
-    static Scanner sc = new Scanner(System.in);
-
+     Scanner sc = new Scanner(System.in);
+     String NAME_PATTERN = "^[A-Z]{1}[a-zA-Z]{2,}$";
+     String EMAIL_PATTERN = "^[a-zA-Z0-9]{3,}([\\.\\+\\-]?[a-zA-Z0-9]{3,})?[@][A-Za-z0-9]{1,}[.][A-Za-z]{2,4}[,]?([.][A-Za-z]{2,4}[.]?)?$";
+     String MOBILE_NUMBER_PATTERN = "^[9][1]\\s[6-9][0-9]{9}$";
+     String PASSWORD_PATTERN = "^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.\\!])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$";
+    
+     UserEntryValidator validate = (String pattern, String name) -> Pattern.matches(pattern, name);
     //asks users for the details to validate
     public void fillForm(){
         log.info("Enter a valid first name");
@@ -23,64 +32,13 @@ public class UserRegistration
 		String mobile = sc.nextLine();
         log.info("Enter a valid password with minimum 8 charcters(at least one uppercase letter,one digit and exactly one special character)");
 		String password = sc.nextLine();
-        try {
-            isFirstNamevalid(firstName);
-        }catch(Exception e) {log.info("Exception occured is " + e);}
-        try {
-            isLastNameValid(lastName);
-        }catch(Exception e) {
-            log.info("Exception occured is " + e);
-        }
-        try {
-            isEmailValid(email);
-        }catch(Exception e) {
-            log.info("Exception occured is " + e);
-        }
-        try {
-            isMobileNumberValid(mobile);
-        }catch(Exception e) {
-            log.info("Exception occured is " + e);
-        }
-        try {
-            isPasswordValid(password);
-        }catch(Exception e) {
-            log.info("Exception occured is " + e);
-        }
-      
+        System.out.println("Entered First Name is " + validate.validityCheck(NAME_PATTERN, firstName));
+        System.out.println("Entered Last Name is " + validate.validityCheck(NAME_PATTERN, lastName));
+        System.out.println("Entered Email is " + validate.validityCheck(EMAIL_PATTERN, email));
+        System.out.println("Entered Mobile Number is " + validate.validityCheck(MOBILE_NUMBER_PATTERN, mobile));
+        System.out.println("Entered Password is " + validate.validityCheck(PASSWORD_PATTERN, password));      
     }
-    //method to validate form data
-    public  boolean isFirstNamevalid(String firstName) throws UserRegistrationException {
-
-        if(Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", firstName))
-            return true;
-        else
-            throw new UserRegistrationException("Invalid First Name");
-   }
-   public  boolean isLastNameValid(String lastName) throws UserRegistrationException {
-       if(Pattern.matches("^[A-Z]{1}[a-zA-Z]{2,}$", lastName))
-           return true;
-       else
-           throw new UserRegistrationException("Invalid Last Name");
-   }
-   public  boolean isEmailValid(String email) throws UserRegistrationException {
-       if(Pattern.matches("^[a-zA-Z0-9]{3,}([\\.\\+\\-]?[a-zA-Z0-9]{3,})?[@][A-Za-z0-9]{1,}[.][A-Za-z]{2,4}[,]?([.][A-Za-z]{2,4}[.]?)?$", email))
-           return true;
-       else
-           throw new UserRegistrationException("Invalid Email");
-
-   }
-   public  boolean isMobileNumberValid(String mobile) throws UserRegistrationException {
-       if(Pattern.matches("^[9][1][\\s][6-9][0-9]{9}$", mobile))
-           return true;
-       else
-           throw new UserRegistrationException("Invalid Mobile Number");
-   }
-   public  boolean isPasswordValid(String password) throws UserRegistrationException {
-       if(Pattern.matches("^(?=.*[\\@\\#\\$\\%\\&\\_\\,\\.])(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$", password))
-           return true;
-       else
-           throw new UserRegistrationException("Invalid Password");
-   }
+    
 
     public static void main( String[] args )
     {

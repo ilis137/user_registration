@@ -57,7 +57,7 @@ public class UserRegistrationParametrizedTest {
       });
   }
   @Test
-  public void checkEmailIsvalidOrNot() {
+ /* */ public void checkEmailIsvalidOrNot() {
     try {
         log.info("Email:" + this.expectedResult);
       Assert.assertEquals(this.expectedResult, form.isEmailValid(this.email));
